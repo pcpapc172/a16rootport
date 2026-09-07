@@ -1,8 +1,8 @@
-# GhostLock A17 (rebuilt tree) — NDK r30 on macOS (darwin-x86_64)
+# GhostLock A17 (rebuilt tree) — NDK r30 on macOS (linux-x86_64)
 API ?= 35
 
 NDK_ROOT ?= $(or $(ANDROID_NDK_HOME),$(ANDROID_NDK_ROOT),$(HOME)/Library/Android/sdk/ndk/30.0.15729638)
-HOST_TAG := $(shell uname -m | sed 's/x86_64/darwin-x86_64/;s/arm64/darwin-x86_64/')
+HOST_TAG := $(shell uname -m | sed 's/x86_64/linux-x86_64/;s/arm64/linux-x86_64/')
 NDK_CC := $(NDK_ROOT)/toolchains/llvm/prebuilt/$(HOST_TAG)/bin/aarch64-linux-android$(API)-clang
 
 SRCS := \

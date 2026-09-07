@@ -17,7 +17,7 @@ SRCS := \
   src/core/miniadb.c \
   src/core/umh_root.c
 
-TARGET ?= target.h
+TARGET ?= target_czg1.h
 CFLAGS := -O2 -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function \
   -Isrc/core -Isrc/devices -DTARGET_CONFIG_H=\"$(TARGET)\"
 LDFLAGS := -fPIE -pie -pthread

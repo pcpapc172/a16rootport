@@ -1,0 +1,39 @@
+name: build-ghostlock-a16
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install NDK r28c
+        run: |
+          set -eux
+          cd $HOME
+          curl -fsSL -o ndk.zip \
+            https://dl.google.com/android/repository/android-ndk-r28c-linux.zip
+          unzip -q ndk.zip
+          echo "ANDROID_NDK_HOME=$HOME/android-ndk-r28c" >> "$GITHUB_ENV"
+
+      - name: Build
+        run: |
+          set -eux
+          # a17 Makefile may differ slightly — show it first
+          cat Makefile
+          make API=35 || make
+          ls -la
+          file ghostlock 2>/dev/null || file */ghostlock 2>/dev/null || find . -name 'ghostlock' -o -name 'g4d' -o -name 'g4sh'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ghostlock-a16port
+          path: |
+            ghostlock
+            g4d
+            g4sh
+          if-no-files-found: warn

@@ -270,5 +270,5 @@
 
 /* SLIDE mode pselect shift (pselect vs select stack frame diff 16B = 2 words) */
 #define SLIDE_PSELECT_WORD_SHIFT 1
-#define SLIDE_PSELECT_NFDS 320
+#define SLIDE_PSELECT_NFDS 512
 #define SLIDE_USE_SELECT 1
